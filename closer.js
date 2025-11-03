@@ -26,6 +26,15 @@ class Counter {
   }
 }
 
-const counter1 = new Counter(10);
+const counter1 = new Counter(0);
+
+counter1.add(5);
+counter1.add(6);
 counter1.print();
+
+const counter2 = new Counter(0);
+counter2.add(20);
+counter2.add(20);
+
+counter2.print()
 //-----------------------------------------------
