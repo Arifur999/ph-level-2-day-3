@@ -80,11 +80,34 @@ class LinkList {
 
   remove(index) {
 
+// first a remove korte hoy
+
+    if (index===0) {
+
+        const removedItem=this.head.value;
+        this.head=this.head.next
+        
+
+        if (this.length===1) {
+            this.tail.null
+            
+            
+        }
+        this.length --
+        return removedItem;
+    }
+
 const leadingNode=this._traverseToIndex(index-1)
 const nodeToRemove=leadingNode.next;
 
 leadingNode.next=nodeToRemove.next;
 
+// last a remove korte
+if (leadingNode===null) {
+    this.tail=leadingNode
+}
+
+return nodeToRemove.value;
   }
 
 
