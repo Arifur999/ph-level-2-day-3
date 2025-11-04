@@ -26,6 +26,8 @@ class LinkList {
     }
 
     this.length++;
+
+    return this
   }
 
   prepend(value) {
@@ -42,6 +44,8 @@ class LinkList {
     }
 
     this.length++;
+
+    return this
   }
 
   insert(index, value) {
@@ -74,7 +78,14 @@ class LinkList {
     console.log(leadingNode);
   }
 
-  remove() {}
+  remove(index) {
+
+const leadingNode=this._traverseToIndex(index-1)
+const nodeToRemove=leadingNode.next;
+
+leadingNode.next=nodeToRemove.next;
+
+  }
 
 
 //  private helper method
@@ -104,13 +115,12 @@ class LinkList {
 }
 
 const linklist = new LinkList();
-linklist.append(1);
-linklist.append(2);
-linklist.append(3);
+linklist.append(1).append(2).append(3)
+
 
 linklist.prepend(10);
 linklist.prepend(20);
 linklist.prepend(30);
 linklist.insert(2, 100);
-
+linklist.remove(2)
 linklist.print();
