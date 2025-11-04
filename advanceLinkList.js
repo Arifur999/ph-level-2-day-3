@@ -29,8 +29,7 @@ class LinkList {
   }
 
   prepend(value) {
-
-const newNode = new Node(value);
+    const newNode = new Node(value);
     //if the link list is empty
     if (this.head === null) {
       this.head = newNode;
@@ -38,28 +37,69 @@ const newNode = new Node(value);
     } else {
       //if the link list is not empty
 
-      newNode.next=this.head;
+      newNode.next = this.head;
       this.head = newNode;
-
-
     }
 
     this.length++;
+  }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) {
+      console.error("index out of bound");
+    }
+
+    //if the insert is in the start of the link list
+    if (index === 0) {
+      return this.prepend(value);
+    }
+
+    //if the insert is the last of the link list
+    if (index === this.length) {
+      return this.append(value);
+    }
+
+    //if the insert is the mid of the link list
+
+    //find the leading node
+    const leadingNode=this._traverseToIndex(index-1)
+    const holdingNode=leadingNode.next;
+
+
+    const newNode=new Node(value)
+
+    leadingNode.next=newNode;
+    newNode.next=holdingNode;
+    this.length++;
+    console.log(leadingNode);
+  }
+
+  remove() {}
+
+
+//  private helper method
+  _traverseToIndex(index) {
+    let count = 0;
+
+    let currentNode = this.head;
+    while (count !== index - 1) {
+      currentNode = currentNode.next;
+      count++;
+    }
+     return currentNode;
+
+
 
   }
 
-//   insert() {}
-
-//   remove() {}
-
   print() {
-    const arr=[]
+    const arr = [];
     let currentNode = this.head;
     while (currentNode !== null) {
       arr.push(currentNode.value);
       currentNode = currentNode.next;
     }
-    console.log(arr.join("->"),"-> null");
+    console.log(arr.join("->"), "-> null");
   }
 }
 
@@ -71,5 +111,6 @@ linklist.append(3);
 linklist.prepend(10);
 linklist.prepend(20);
 linklist.prepend(30);
+linklist.insert(2, 100);
 
 linklist.print();
